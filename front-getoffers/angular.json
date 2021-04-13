@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "cec870e3-6b9d-4959-b412-9b1a0a525ae7"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -69,7 +72,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "front-getoffers:build"
+            "browserTarget": "front-getoffers:build",
+            "port": 5200
           },
           "configurations": {
             "production": {
