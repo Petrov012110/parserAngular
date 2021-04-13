@@ -1,2 +1,30 @@
-<h1>User</h1>
-<router-outlet></router-outlet>
+<p>
+  <mat-toolbar class="container">
+    <div class="header-wrapp">
+      <div class="header-wrapp_logo">
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>My App</span>
+      </div>
+      <div class="header-wrapp_nav">
+        <ul class="nav">
+            <li routerLinkActive="active">
+                <a [routerLink]="['/user', 'main']">Главная</a>
+            </li>
+            <li routerLinkActive="active">
+                <a [routerLink]="['/user', 'parser']">Поиск</a>
+            </li>
+            <!-- <li>
+                <a href="#" (click)="logout($event)">Выйти</a>
+            </li> -->
+        </ul>
+      </div>
+    </div>
+    
+  </mat-toolbar>
+</p>
+
+<div class="container">
+    <router-outlet></router-outlet>
+</div>

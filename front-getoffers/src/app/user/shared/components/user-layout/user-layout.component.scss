@@ -1,0 +1,27 @@
+p{
+    background: #f5f5f5;
+}
+mat-toolbar{
+    background: none !important;
+}
+.header-wrapp{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+    .nav{
+        display: flex;
+        li{
+            margin-right: 10px;
+            &:last-child{
+                margin-right: 0;
+            }
+        }
+        li.active a {
+            color: var(--dark-color);
+            font-weight: bold;
+            cursor: default;
+          }
+    }
+}
