@@ -8,17 +8,26 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { MainPageComponent } from './main-page/main-page.component';
 import {MatButtonModule} from '@angular/material/button';
-import { FavoritesComponent } from './parser-page/favorites/favorites.component';
-import { ResultsComponent } from './parser-page/results/results.component';
+import { ParserPageComponent } from './parser-page/parser-page.component';
+import { TableComponent } from './shared/components/table/table.component';
+import { TreeComponent } from './shared/components/tree/tree.component';
+import { GroupsComponent } from './shared/components/groups/groups.component';
+import {MatTreeModule} from '@angular/material/tree';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { TreeService } from "./shared/services/tree.service";
+import { SharedModule } from "./shared/shared.module";
 
 
 @NgModule({
     declarations: [
         UserLayoutComponent, 
         ClientPageComponent, 
-        MainPageComponent, 
-        FavoritesComponent, 
-        ResultsComponent
+        MainPageComponent,  
+        ParserPageComponent, 
+        TableComponent, 
+        TreeComponent, 
+        GroupsComponent
     ],
         
     imports: [
@@ -26,6 +35,10 @@ import { ResultsComponent } from './parser-page/results/results.component';
         MatIconModule,
         MatToolbarModule,
         MatButtonModule,
+        MatTreeModule,
+        MatCheckboxModule,
+        MatFormFieldModule,
+        SharedModule,
         RouterModule.forChild([
             {
                 path: '', component: UserLayoutComponent, children: [
@@ -33,13 +46,14 @@ import { ResultsComponent } from './parser-page/results/results.component';
                     {path: 'login', component: LoginPageComponent},
                     {path: 'main', component: MainPageComponent},
                     {path: 'client', component: ClientPageComponent},
-                    {path: 'favorites', component: ClientPageComponent},
-                    {path: 'results', component: ClientPageComponent}
+                    {path: 'parser', component: ParserPageComponent},
+                    
                 ]
             }
         ])
     ],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    providers: [TreeService]
 })
 export class UserModule {
 

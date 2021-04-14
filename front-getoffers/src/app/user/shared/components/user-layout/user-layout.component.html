@@ -6,7 +6,9 @@
           <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
             <mat-icon>menu</mat-icon>
           </button>
-          <span>My App</span>
+          <span>
+            <a [routerLink]="['/user', 'main']">Get.offers</a>
+          </span>
         </div>
         <div class="header-wrapp_nav">
           <ul class="nav">
@@ -16,16 +18,15 @@
             <li routerLinkActive="active">
               <a [routerLink]="['/user', 'parser']">Поиск</a>
             </li>
-            <!-- <li>
+            <li>
                 <a href="#" (click)="logout($event)">Выйти</a>
-            </li> -->
+            </li>
           </ul>
         </div>
       </div>
     </mat-toolbar>
   </div>
 </div>
-
 
 <div class="container">
   <router-outlet></router-outlet>
