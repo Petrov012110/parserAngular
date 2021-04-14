@@ -16,8 +16,11 @@ import {MatTreeModule} from '@angular/material/tree';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { TreeService } from "./shared/services/tree.service";
-import { SharedModule } from "./shared/shared.module";
-
+import {MatTabsModule} from '@angular/material/tabs';
+import { FavoritesComponent } from "./shared/components/favorites/favorites.component";
+import { HttpClientModule } from "@angular/common/http";
+import {MatListModule} from '@angular/material/list';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
     declarations: [
@@ -27,7 +30,8 @@ import { SharedModule } from "./shared/shared.module";
         ParserPageComponent, 
         TableComponent, 
         TreeComponent, 
-        GroupsComponent
+        GroupsComponent,
+        FavoritesComponent
     ],
         
     imports: [
@@ -38,7 +42,10 @@ import { SharedModule } from "./shared/shared.module";
         MatTreeModule,
         MatCheckboxModule,
         MatFormFieldModule,
-        SharedModule,
+        HttpClientModule,
+        MatListModule,
+        MatTabsModule,
+        MatTableModule,
         RouterModule.forChild([
             {
                 path: '', component: UserLayoutComponent, children: [

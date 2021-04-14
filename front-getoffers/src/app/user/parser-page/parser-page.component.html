@@ -6,8 +6,19 @@
     </div>
     <div class="container-inner__content">
         <div class="container-inner__content-inner">
-            <app-groups></app-groups>
-            <app-table></app-table>
+            <div class="groups-block">
+                <app-groups></app-groups>
+            </div>
+            <div class="tabs-block">
+                <mat-tab-group animationDuration="0ms">
+                    <mat-tab label="First">
+                        <app-table></app-table>
+                    </mat-tab>
+                    <mat-tab label="Second">
+                        <app-favorites></app-favorites>
+                    </mat-tab>
+                </mat-tab-group>
+            </div>
         </div>
     </div>
 </div>
