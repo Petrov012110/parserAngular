@@ -12,8 +12,6 @@ export class UserLayoutComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  logout(event: Event) {
-    event.preventDefault()    
-  }
+
 
 }

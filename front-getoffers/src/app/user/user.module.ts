@@ -6,7 +6,6 @@ import { UserLayoutComponent } from "./shared/components/user-layout/user-layout
 import { ClientPageComponent } from "./client-page/client-page.component";
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import { MainPageComponent } from './main-page/main-page.component';
 import {MatButtonModule} from '@angular/material/button';
 import { ParserPageComponent } from './parser-page/parser-page.component';
 import { TableComponent } from './shared/components/table/table.component';
@@ -26,7 +25,6 @@ import {MatTableModule} from '@angular/material/table';
     declarations: [
         UserLayoutComponent, 
         ClientPageComponent, 
-        MainPageComponent,  
         ParserPageComponent, 
         TableComponent, 
         TreeComponent, 
@@ -49,9 +47,8 @@ import {MatTableModule} from '@angular/material/table';
         RouterModule.forChild([
             {
                 path: '', component: UserLayoutComponent, children: [
-                    {path: '', redirectTo: '/user/main', pathMatch: 'full'},
+                    {path: '', redirectTo: '/user/parser', pathMatch: 'full'},
                     {path: 'login', component: LoginPageComponent},
-                    {path: 'main', component: MainPageComponent},
                     {path: 'client', component: ClientPageComponent},
                     {path: 'parser', component: ParserPageComponent},
                     
