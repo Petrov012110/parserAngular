@@ -8,6 +8,11 @@ import { UserModule } from './user/user.module';
 import { HomePageComponent } from './home-page/home-page.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+
+
 
 @NgModule({
   declarations: [
@@ -21,7 +26,11 @@ import { FooterComponent } from './shared/components/footer/footer.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    UserModule
+    UserModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatButtonModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

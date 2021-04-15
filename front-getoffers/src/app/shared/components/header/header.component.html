@@ -1,1 +1,29 @@
-<p>header works!</p>
+<div class="header">
+    <div class="container">
+      <mat-toolbar>
+        <div class="header-wrapp">
+          <div class="header-wrapp_logo">
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+              <mat-icon>menu</mat-icon>
+            </button>
+            <span>
+              <a routerLink="/">Get.offers</a>
+            </span>
+          </div>
+          <div class="header-wrapp_nav">
+            <ul class="nav">
+              <li routerLinkActive="active">
+                <a [routerLink]="['/user', 'main']">Главная</a>
+              </li>
+              <li routerLinkActive="active">
+                <a [routerLink]="['/user', 'parser']">Поиск</a>
+              </li>
+              <li>
+                <a href="#" (click)="logout($event)">Выйти</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </mat-toolbar>
+    </div>
+  </div>

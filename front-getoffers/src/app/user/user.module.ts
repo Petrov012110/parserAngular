@@ -20,6 +20,7 @@ import { FavoritesComponent } from "./shared/components/favorites/favorites.comp
 import { HttpClientModule } from "@angular/common/http";
 import {MatListModule} from '@angular/material/list';
 import {MatTableModule} from '@angular/material/table';
+import { MainLayoutComponent } from "../shared/components/main-layout/main-layout.component";
 
 @NgModule({
     declarations: [
@@ -46,11 +47,13 @@ import {MatTableModule} from '@angular/material/table';
         MatTableModule,
         RouterModule.forChild([
             {
-                path: '', component: UserLayoutComponent, children: [
-                    {path: '', redirectTo: '/user/parser', pathMatch: 'full'},
-                    {path: 'login', component: LoginPageComponent},
+                path: '', component: MainLayoutComponent, children: [
+                    {path: '', redirectTo: '/main', pathMatch: 'full'},
                     {path: 'client', component: ClientPageComponent},
-                    {path: 'parser', component: ParserPageComponent},
+                    {path: 'parser', component: ParserPageComponent, children: [
+                        {path: 'table', component: TableComponent},
+                        {path: 'favorites', component: FavoritesComponent},
+                    ]},
                     
                 ]
             }
