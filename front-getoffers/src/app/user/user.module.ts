@@ -34,9 +34,11 @@ import { FavoritesComponent } from "./shared/components/favorites/favorites.comp
                 path: '', component: UserLayoutComponent, children: [
                     {path: '', redirectTo: '/user/login', pathMatch: 'full'},
                     {path: 'login', component: LoginPageComponent},
-                    {path: 'parser', component: ParserPageComponent},
-                    {path: 'table', component: TableComponent},
-                    {path: 'parser', component: FavoritesComponent},
+                    {path: 'parser', component: ParserPageComponent, children: [
+                        { path: '', redirectTo: '/user/parser/table', pathMatch: 'full' },
+                        {path: 'table', component: TableComponent},
+                        {path: 'favorites', component: FavoritesComponent}
+                    ]},
                     {path: 'client', component: ClientPageComponent}
                 ]
             }

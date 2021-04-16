@@ -1,6 +1,10 @@
 <p>parser-page works!</p>
 <app-groups></app-groups>
-<mat-tab-group>
-    <mat-tab label="First"> <app-table></app-table> </mat-tab>
-    <mat-tab label="Second"> <app-favorites></app-favorites> </mat-tab>
-  </mat-tab-group>
+<nav mat-tab-nav-bar >
+  <a mat-tab-link *ngFor="let link of navLinks"
+  [routerLink]="link.link"
+  routerLinkActive #rla="routerLinkActive"
+  [active]="rla.isActive"> {{link.label}} </a>
+  <a mat-tab-link disabled>Disabled Link</a>
+</nav>
+<router-outlet></router-outlet>
