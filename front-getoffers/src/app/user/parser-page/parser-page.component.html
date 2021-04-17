@@ -1,10 +1,20 @@
-<p>parser-page works!</p>
-<app-groups></app-groups>
-<nav mat-tab-nav-bar >
-  <a mat-tab-link *ngFor="let link of navLinks"
-  [routerLink]="link.link"
-  routerLinkActive #rla="routerLinkActive"
-  [active]="rla.isActive"> {{link.label}} </a>
-  <a mat-tab-link disabled>Disabled Link</a>
-</nav>
-<router-outlet></router-outlet>
+<div class="wrapp-tree">
+  <app-tree></app-tree>
+</div>
+
+<div class="wrapp-groups container">
+  <app-groups></app-groups>
+</div>
+
+<div class="wrapp-tabs container">
+  <nav mat-tab-nav-bar >
+    <a mat-tab-link *ngFor="let link of navLinks"
+    [routerLink]="link.link"
+    routerLinkActive #rla="routerLinkActive"
+    [active]="rla.isActive"> {{link.label}} </a>
+    <a mat-tab-link disabled>Disabled Link</a>
+  </nav>
+  <router-outlet></router-outlet>
+</div>
+
+
