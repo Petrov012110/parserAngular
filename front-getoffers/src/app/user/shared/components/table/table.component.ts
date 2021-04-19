@@ -23,11 +23,7 @@ export class TableComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tableService.getAll().subscribe(data => {
-      console.log(data);
-      this.tableData = data
-      
-    })
+    this.tableService.getAll().subscribe(data => this.tableData = data)
   }
 }
 

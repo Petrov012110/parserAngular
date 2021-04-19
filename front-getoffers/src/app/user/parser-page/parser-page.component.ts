@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,28 +7,37 @@ import { Router } from '@angular/router';
   styleUrls: ['./parser-page.component.scss']
 })
 export class ParserPageComponent implements OnInit {
-  title = 'angular-material-tab-router';  
+
+  
+  title = 'angular-material-tab-router';
   navLinks: any[];
   activeLinkIndex = -1;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+
+  ) {
     this.navLinks = [
       {
-          label: 'Table',
-          link: './table',
-          index: 0
+        label: 'Table',
+        link: './table',
+        index: 0
       }, {
-          label: 'Favorites',
-          link: './favorites',
-          index: 1
+        label: 'Favorites',
+        link: './favorites',
+        index: 1
       },
-  ];
-   }
+    ];
+  }
+
+  getCheckedTree() {
+    // console.log(this._selectedItems);
+  }
 
   ngOnInit(): void {
     this.router.events.subscribe((res) => {
       this.activeLinkIndex = this.navLinks.indexOf(this.navLinks.find(tab => tab.link === '.' + this.router.url));
-  });
+    });
   }
 
 }

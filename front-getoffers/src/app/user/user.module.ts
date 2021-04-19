@@ -11,6 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from "@angular/common/http";
+import { MatListModule } from '@angular/material/list';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 import { LoginPageComponent } from "./login-page/login-page.component";
 import { UserLayoutComponent } from "./shared/components/user-layout/user-layout.component";
@@ -49,6 +51,8 @@ import { TreeServices } from "./shared/services/tree.services";
         MatIconModule,
         MatButtonModule,
         MatFormFieldModule,
+        MatListModule,
+        MatGridListModule,
         RouterModule.forChild([
             {
                 path: '', component: UserLayoutComponent, children: [

@@ -4,6 +4,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { TodoItemFlatNode, TodoItemNode, TreeServices } from '../../services/tree.services';
+import { group } from '@angular/animations';
 
 
 
@@ -35,7 +36,9 @@ export class TreeComponent implements OnInit {
   dataSource: MatTreeFlatDataSource<TodoItemNode, TodoItemFlatNode>;
 
   /** The selection for checklist */
-  checklistSelection = new SelectionModel<TodoItemFlatNode>(true /* multiple */);
+  checklistSelection = new SelectionModel<TodoItemFlatNode>(true);
+
+  _selectedItems: any[];
 
   constructor(
     private _database: TreeServices
@@ -48,6 +51,7 @@ export class TreeComponent implements OnInit {
     _database.dataChange.subscribe(data => {
       this.dataSource.data = data;
     });
+    this._selectedItems = [ ]
   }
 
   getLevel = (node: TodoItemFlatNode) => node.level;
@@ -86,80 +90,101 @@ export class TreeComponent implements OnInit {
   }
 
   /** Whether part of the descendants are selected */
-  descendantsPartiallySelected(node: TodoItemFlatNode): boolean {
-    const descendants = this.treeControl.getDescendants(node);
-    const result = descendants.some(child => this.checklistSelection.isSelected(child));
-    return result && !this.descendantsAllSelected(node);
-  }
+  // descendantsPartiallySelected(node: TodoItemFlatNode): boolean {
+  //   const descendants = this.treeControl.getDescendants(node);
+  //   const result = descendants.some(child => this.checklistSelection.isSelected(child));
+  //   return result && !this.descendantsAllSelected(node);
+  // }
 
   /** Toggle the to-do item selection. Select/deselect all the descendants node */
   todoItemSelectionToggle(node: TodoItemFlatNode): void {
+    // HERE IS WHERE THE PART OF THE MODEL RELATED TO THE CLICKED CHECKBOX IS UPDATED
     this.checklistSelection.toggle(node);
-    const descendants = this.treeControl.getDescendants(node);
-    this.checklistSelection.isSelected(node)
-      ? this.checklistSelection.select(...descendants)
-      : this.checklistSelection.deselect(...descendants);
 
-    // Force update for the parent
-    descendants.forEach(child => this.checklistSelection.isSelected(child));
-    this.checkAllParentsSelection(node);
+    // HERE WE GET POTENTIAL CHILDREN OF THE CLICKED NODE
+    // const descendants = this.treeControl.getDescendants(node);
+
+    // HERE IS WHERE THE REST OF THE MODEL (POTENTIAL CHILDREN OF THE CLICKED NODE) IS UPDATED
+    // this.checklistSelection.isSelected(node) 
+    //   ? this.checklistSelection.select(...descendants)
+    //   : this.checklistSelection.deselect(...descendants);   
   }
 
   /** Toggle a leaf to-do item selection. Check all the parents to see if they changed */
   todoLeafItemSelectionToggle(node: TodoItemFlatNode): void {
     this.checklistSelection.toggle(node);
-    this.checkAllParentsSelection(node);
+    // this.checkAllParentsSelection(node);
+
+
   }
 
   /* Checks all the parents when a leaf node is selected/unselected */
-  checkAllParentsSelection(node: TodoItemFlatNode): void {
-    let parent: TodoItemFlatNode | null = this.getParentNode(node);
-    while (parent) {
-      this.checkRootNodeSelection(parent);
-      parent = this.getParentNode(parent);
-    }
-  }
+  // checkAllParentsSelection(node: TodoItemFlatNode): void {
+  //   let parent: TodoItemFlatNode | null = this.getParentNode(node);
+  //   while (parent) {
+  //     this.checkRootNodeSelection(parent);
+  //     parent = this.getParentNode(parent);
+  //   }
+  // }
 
   /** Check root node checked state and change it accordingly */
-  checkRootNodeSelection(node: TodoItemFlatNode): void {
-    const nodeSelected = this.checklistSelection.isSelected(node);
-    const descendants = this.treeControl.getDescendants(node);
-    const descAllSelected = descendants.length > 0 && descendants.every(child => {
-      return this.checklistSelection.isSelected(child);
-    });
-    if (nodeSelected && !descAllSelected) {
-      this.checklistSelection.deselect(node);
-    } else if (!nodeSelected && descAllSelected) {
-      this.checklistSelection.select(node);
-    }
-  }
+  // checkRootNodeSelection(node: TodoItemFlatNode): void {
+  //   const nodeSelected = this.checklistSelection.isSelected(node);
+  //   const descendants = this.treeControl.getDescendants(node);
+  //   const descAllSelected = descendants.length > 0 && descendants.every(child => {
+  //     return this.checklistSelection.isSelected(child);
+  //   });
+  //   if (nodeSelected && !descAllSelected) {
+  //     this.checklistSelection.deselect(node);
+  //   } else if (!nodeSelected && descAllSelected) {
+  //     this.checklistSelection.select(node);
+  //   }
+  // }
 
   /* Get the parent node of a node */
-  getParentNode(node: TodoItemFlatNode): TodoItemFlatNode | null {
-    const currentLevel = this.getLevel(node);
+  // getParentNode(node: TodoItemFlatNode): TodoItemFlatNode | null {
+  //   const currentLevel = this.getLevel(node);
 
-    if (currentLevel < 1) {
-      return null;
-    }
+  //   if (currentLevel < 1) {
+  //     return null;
+  //   }
 
-    const startIndex = this.treeControl.dataNodes.indexOf(node) - 1;
+  //   const startIndex = this.treeControl.dataNodes.indexOf(node) - 1;
 
-    for (let i = startIndex; i >= 0; i--) {
-      const currentNode = this.treeControl.dataNodes[i];
+  //   for (let i = startIndex; i >= 0; i--) {
+  //     const currentNode = this.treeControl.dataNodes[i];
 
-      if (this.getLevel(currentNode) < currentLevel) {
-        return currentNode;
-      }
-    }
-    return null;
-  }
+  //     if (this.getLevel(currentNode) < currentLevel) {
+  //       return currentNode;
+  //     }
+  //   }
+  //   return null;
+  // }
 
   ngOnInit() {
-    this._database.getTree().subscribe((val) => {
-      // console.log(val);
+    console.log(this.checklistSelection.isSelected);
 
-    })
   }
+
+  onClick() {
+    // this.checklistSelection.selected.map(s => {
+    //   if (s.level == 0) {
+    //     this._selectedItems.map(v => {
+    //       item: s.
+    //     })
+    //   } 
+    // });
+    // console.log(this._selectedItems);
+
+    // // this._selectedItems = this.checklistSelection.selected.map(s => s.level);
+    // // console.log(this._selectedItems);
+
+  }
+
+  checkCheckBoxvalue(event: { checked: any; }) {
+    console.log(event.checked)
+  }
+
 
   //  /** Select the category so we can insert the new item. */
   //  addNewItem(node: TodoItemFlatNode) {

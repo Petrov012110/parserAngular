@@ -1,7 +1,5 @@
-<div>
-    <p>groups works!</p>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-        Voluptatem illum, quo et at distinctio quos neque possimus unde officia laborum asperiores fuga labore, a aperiam. 
-        Error repudiandae labore molestias vitae?
-</p>
-</div>
+<mat-selection-list #groupList (selectionChange)="onGroupsChange(groupList.selectedOptions.selected)">
+    <mat-list-option *ngFor="let group of groups" [value]="group">
+        {{group}}
+    </mat-list-option>
+</mat-selection-list>
