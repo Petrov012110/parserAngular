@@ -12,7 +12,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from "@angular/common/http";
 import { MatListModule } from '@angular/material/list';
-import {MatGridListModule} from '@angular/material/grid-list';
+
+
 
 import { LoginPageComponent } from "./login-page/login-page.component";
 import { UserLayoutComponent } from "./shared/components/user-layout/user-layout.component";
@@ -27,6 +28,7 @@ import { PostComponent } from './shared/components/post/post.component';
 import { TableServices } from "./shared/services/table.services";
 import { GroupsServices } from "./shared/services/groups.services";
 import { TreeServices } from "./shared/services/tree.services";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 
 @NgModule({
@@ -52,7 +54,8 @@ import { TreeServices } from "./shared/services/tree.services";
         MatButtonModule,
         MatFormFieldModule,
         MatListModule,
-        MatGridListModule,
+        NgbModule,
+        
         RouterModule.forChild([
             {
                 path: '', component: UserLayoutComponent, children: [

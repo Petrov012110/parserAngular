@@ -12,8 +12,9 @@ import { ParsedGroupTypes, TableServices } from '../../services/table.services';
 })
 export class TableComponent implements OnInit {
 
-  tableData: ParsedGroupTypes[] = [];
-  
+  tableData: any[] = [];
+  page = 1;
+  pageSize = 10;
   constructor(private tableService: TableServices) {
 
   }

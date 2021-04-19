@@ -12,6 +12,7 @@ import { MainLayoutComponent } from './shared/components/main-layout/main-layout
 import { HomePageComponent } from './home-page/home-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserModule } from './user/user.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { UserModule } from './user/user.module';
     MatButtonModule,
     MatFormFieldModule,
     BrowserAnimationsModule,
-    UserModule
+    UserModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

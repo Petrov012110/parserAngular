@@ -1,5 +1,5 @@
 <div *ngIf="tableData.length; else loading">
-  <table>
+  <table >
     <thead>
       <tr>
         <th>Номер</th>
@@ -10,19 +10,22 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let post of tableData[0].data; let idx = index">
-        <td>{{idx + 1}}</td>
-        <td>{{tableData[0].name}}</td>
-        <td>{{post.price}}</td>
-        <td>
-          <button class="btn btn-link" [routerLink]="['/user', 'post', post.price]">
-            Открыть
-          </button>
-          <a (click)="addFavorites(post.post)">Избранное</a>
-        </td>
-      </tr>
+      <ng-container *ngFor="let post of tableData | slice: (page-1) * pageSize : page * pageSize ; let idx = index" >
+      <tr *ngFor="let d of post.data ; let i = index">
+        
+          <!-- <td>{{idx+1}}</td> -->
+          <td>{{d.price}}</td>
+          <td>
+            <!-- <button class="btn btn-link" [routerLink]="['/user', 'post', post[idx].price]">
+              Открыть
+            </button>
+            <a (click)="addFavorites(post)">Избранное</a> -->
+          </td>
+        </tr>
+      </ng-container>
     </tbody>
   </table>
+  <ngb-pagination [collectionSize]="120" [(page)]="page" [maxSize]="5" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
 </div>
 
 <ng-template #loading>

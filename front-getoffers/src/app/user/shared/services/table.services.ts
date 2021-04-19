@@ -28,7 +28,7 @@ export class TableServices {
     constructor(private http: HttpClient) { }
 
     getAll(): Observable<ParsedGroupType[]> {
-        return this.http.post(`http://212.119.243.127:5387/api/get_data`, {groups: ["theMarket"], items: [{id: "0", name: "Adidas", series: [{name: "Yeezy"}]}]})
+        return this.http.post(`http://212.119.243.127:5387/api/get_data`, {groups: ["theMarket", "stremobzorstore"], items: [{id: "0", name: "Adidas", series: [{name: "Yeezy"}]}]})
             .pipe(map((response: {[key:string]: any}) => {
                 return Object
                     .keys(response)

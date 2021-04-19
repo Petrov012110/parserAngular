@@ -38,7 +38,8 @@ export class TreeComponent implements OnInit {
   /** The selection for checklist */
   checklistSelection = new SelectionModel<TodoItemFlatNode>(true);
 
-  _selectedItems: any[];
+  // _selectedItems: any[];
+
 
   constructor(
     private _database: TreeServices
@@ -51,7 +52,7 @@ export class TreeComponent implements OnInit {
     _database.dataChange.subscribe(data => {
       this.dataSource.data = data;
     });
-    this._selectedItems = [ ]
+   
   }
 
   getLevel = (node: TodoItemFlatNode) => node.level;
@@ -167,17 +168,31 @@ export class TreeComponent implements OnInit {
   }
 
   onClick() {
-    // this.checklistSelection.selected.map(s => {
+    // let _selectedItems: any[] = [
+    //   {
+    //     items: [
+    //       {
+    //         series: []
+    //       }
+    //     ]
+    //   }
+    // ]
+    // const arr = this.checklistSelection.selected.map(s => {
     //   if (s.level == 0) {
-    //     this._selectedItems.map(v => {
-    //       item: s.
-    //     })
-    //   } 
+    //     _selectedItems[0].items[0].push(
+    //       name : s.item
+    //     )
+        
+    //   } else if (s.level == 1) {
+    //       _selectedItems[0].items.push({
+    //         "series" : s.item
+    //       })
+    //   }
     // });
-    // console.log(this._selectedItems);
+    // console.log(_selectedItems);
 
-    // // this._selectedItems = this.checklistSelection.selected.map(s => s.level);
-    // // console.log(this._selectedItems);
+    // this._selectedItems = this.checklistSelection.selected.map(s => s.level);
+    // console.log(this._selectedItems);
 
   }
 
