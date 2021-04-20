@@ -4,3 +4,16 @@
 .wrapp-groups{
     columns: 2;
 }
+a{
+    .mat-tab-label-active {
+    }
+    
+}
+.mat-tab-label, 
+.mat-tab-link{
+    color: var(--color-text-paragraph) !important;
+    
+}
+.mat-ink-bar{
+    background-color: var(--color-accent) !important;
+}

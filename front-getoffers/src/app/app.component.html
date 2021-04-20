@@ -1,17 +1,25 @@
 <mat-toolbar>
     <div class="container">
         <div class="header-wrapp">
-            <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-                <mat-icon>menu</mat-icon>
-            </button>
-            <span>My App</span>
-            <span class="example-spacer"></span>
-            <button mat-icon-button class="nav-btn">
-                <a routerLink="/">Главная</a>
-            </button>
-            <button mat-icon-button class="nav-btn">
-                <a [routerLink]="['/user', 'parser']">Поиск</a>
-            </button>
+            <div class="header-nav">
+                <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+                    
+                    <mat-icon>menu</mat-icon>
+                    
+                </button>
+                <span>My App</span>
+                <span class="example-spacer"></span>
+                
+                    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+                        true}" class="btn-nav">Главная</a>
+                
+                    <a [routerLink]="['/user', 'parser']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+                        false}" class="btn-nav">Поиск</a>
+                
+            </div>
+            <div class="header-user">
+
+            </div>
         </div>
     </div>
 </mat-toolbar>

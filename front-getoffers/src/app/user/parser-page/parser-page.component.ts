@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-parser-page',
   templateUrl: './parser-page.component.html',
-  styleUrls: ['./parser-page.component.scss']
+  styleUrls: ['./parser-page.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ParserPageComponent implements OnInit {
 

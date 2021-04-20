@@ -27,6 +27,7 @@ import { TableServices } from "./shared/services/table.services";
 import { GroupsServices } from "./shared/services/groups.services";
 import { TreeServices } from "./shared/services/tree.services";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { BreadcrumbComponent } from "./shared/components/breadcrumb/breadcrumb.component";
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
         TreeComponent, 
         GroupsComponent,
         FavoritesComponent,
-        PostComponent
+        PostComponent,
+        BreadcrumbComponent
     ],
     imports: [
         CommonModule,
@@ -56,30 +58,41 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
         
         RouterModule.forChild([
             {
-                path: '', component: UserLayoutComponent, children: [
-                    {path: '', redirectTo: '/user/login', pathMatch: 'full'},
-                    {path: 'login', component: LoginPageComponent},
-                    {path: 'parser', component: ParserPageComponent, 
-                    // data: {
-                    //     title: 'page1',
-                    //     breadcrumb: [
-                    //       {
-                    //         label: 'Page1',
-                    //         url: ''
-                    //       }
-                    //     ]
-                    //   },
-                    children: [
-                        {path: '', redirectTo: '/user/parser/table', pathMatch: 'full'},
-                        {path: 'table', component: TableComponent},
-                        {path: 'favorites', component: FavoritesComponent}
-                    ]},
-                    {path: 'post/:id',                        
-                    data: {
-                        breadcrumb: 'Пост'
+                path: '',
+                component: UserLayoutComponent,
+                children: [
+                    {
+                        path: '', 
+                        redirectTo: '/user/parser', 
+                        pathMatch: 'full'
                     },
-                    component: PostComponent},
-                    {path: 'client', component: ClientPageComponent}
+                    // {path: 'login', component: LoginPageComponent},
+                    {
+                        path: 'parser', 
+                        component: ParserPageComponent, 
+                        children: [
+                            {
+                                path: '', 
+                                redirectTo: '/user/parser/table', 
+                                pathMatch: 'full'
+                            },
+                            {
+                                path: 'table', 
+                                component: TableComponent
+                            },
+                            {
+                                path: 'favorites', 
+                                component: FavoritesComponent
+                            }
+                    ]},
+                    {
+                        path: 'post/:id',                        
+                        component: PostComponent
+                    },
+                    {
+                        path: 'client', 
+                        component: ClientPageComponent
+                    }
                 ]
             }
         ])
