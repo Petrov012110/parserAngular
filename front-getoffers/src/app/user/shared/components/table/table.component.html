@@ -11,7 +11,7 @@
     </thead>
     <tbody>
       <ng-container *ngFor="let post of tableData | slice: (page-1) * pageSize : page * pageSize ; let idx = index" >
-      <tr *ngFor="let d of post.data ; let i = index">
+      <tr *ngFor="let d of post.data  ; let i = index">
         
           <!-- <td>{{idx+1}}</td> -->
           <td>{{d.price}}</td>

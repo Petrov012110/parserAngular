@@ -13,8 +13,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from "@angular/common/http";
 import { MatListModule } from '@angular/material/list';
 
-
-
 import { LoginPageComponent } from "./login-page/login-page.component";
 import { UserLayoutComponent } from "./shared/components/user-layout/user-layout.component";
 import { ParserPageComponent } from './parser-page/parser-page.component';
@@ -61,12 +59,26 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
                 path: '', component: UserLayoutComponent, children: [
                     {path: '', redirectTo: '/user/login', pathMatch: 'full'},
                     {path: 'login', component: LoginPageComponent},
-                    {path: 'parser', component: ParserPageComponent, children: [
+                    {path: 'parser', component: ParserPageComponent, 
+                    // data: {
+                    //     title: 'page1',
+                    //     breadcrumb: [
+                    //       {
+                    //         label: 'Page1',
+                    //         url: ''
+                    //       }
+                    //     ]
+                    //   },
+                    children: [
                         {path: '', redirectTo: '/user/parser/table', pathMatch: 'full'},
                         {path: 'table', component: TableComponent},
                         {path: 'favorites', component: FavoritesComponent}
                     ]},
-                    {path: 'post/:id', component: PostComponent},
+                    {path: 'post/:id',                        
+                    data: {
+                        breadcrumb: 'Пост'
+                    },
+                    component: PostComponent},
                     {path: 'client', component: ClientPageComponent}
                 ]
             }
