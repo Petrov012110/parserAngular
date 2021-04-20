@@ -10,8 +10,7 @@
       </tr>
     </thead>
     <tbody>
-      <ng-container *ngFor="let post of tableData | slice: (page-1) * pageSize : page * pageSize ; let idx = index" >
-      <tr *ngFor="let d of post.data  ; let i = index">
+      <tr *ngFor="let d of tableData; let i = index">
         
           <!-- <td>{{idx+1}}</td> -->
           <td>{{d.price}}</td>
@@ -22,10 +21,9 @@
             <!-- <a (click)="addFavorites(post)">Избранное</a> -->
           </td>
         </tr>
-      </ng-container>
     </tbody>
   </table>
-  <ngb-pagination [collectionSize]="120" [(page)]="page" [maxSize]="5" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
+  <ngb-pagination [collectionSize]="tableDataNew.length" [(page)]="page" [maxSize]="10" [rotate]="true" [boundaryLinks]="true" (pageChange)="onChangePagination($event)"></ngb-pagination>
 </div>
 
 <ng-template #loading>

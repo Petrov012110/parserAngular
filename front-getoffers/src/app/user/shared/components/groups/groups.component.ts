@@ -21,11 +21,14 @@ export class GroupsComponent implements OnInit {
           this.groups.push(el.name)
         }
       })
-    })
+    });
   }
 
   onGroupsChange(options: MatListOption[]) {
-    console.log(options.map(o => o.value));
+    this.selectedGroups = options.map(o => o.value);
+
+    this.groupService.treeSelected.next({ ...this.groupService.treeSelected.value, groups: this.selectedGroups});
+    console.log('HELLO SELECT', options.map(o => o.value));
   }
 
 }

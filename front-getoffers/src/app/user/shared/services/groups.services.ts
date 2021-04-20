@@ -1,7 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
+import { map, tap } from "rxjs/operators";
 
 export type GroupsType = {
     name: string
@@ -9,8 +10,18 @@ export type GroupsType = {
     // hrefImage: string
 }
 
+export interface TreeSelectedInterface {
+    groups: any,
+    trees: any
+};
+
 @Injectable()
 export class GroupsServices {
+    public treeSelected: BehaviorSubject<TreeSelectedInterface> = new BehaviorSubject({
+        groups: [],
+        trees: [],
+    });
+
     constructor(private http: HttpClient) { }
     
     getGroups(): Observable<GroupsType[]> {
@@ -26,4 +37,12 @@ export class GroupsServices {
             )
     }
     
+
+    onSelectGroups(): Observable<TreeSelectedInterface> {
+        return this.treeSelected.pipe(tap((res) => res.groups));
+    }
+
+    onSelectTrees(): Observable<TreeSelectedInterface> {
+        return this.treeSelected.pipe(tap((res) => res.trees));
+    }
 }
