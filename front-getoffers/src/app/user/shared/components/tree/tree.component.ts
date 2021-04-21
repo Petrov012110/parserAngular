@@ -40,7 +40,13 @@ export class TreeComponent implements OnInit {
 
   // _selectedItems: any[];
 
-
+  _selectedItems: any[] = [
+    [
+      [
+        
+      ]
+    ]
+  ]
   constructor(
     private _database: TreeServices
   ) {
@@ -167,29 +173,44 @@ export class TreeComponent implements OnInit {
 
   }
 
+  // const onCheck = (checkedKeys: any, info: any) => {
+  //   const paths: PathItemObjType[] = parsePath(checkedKeys.checked);
+  //   const classificator: ClassificatorType = paths?.map((brand) =>({
+  //     id: "0",
+  //     name: brand.text || '',
+  //     series: brand.children?.map((series) => ({
+  //       name: series.text || '',
+  //       models: series.children?.map((model) => ({
+  //         name: model.text || ''
+  //       }))
+  //     })),
+  //   })) || [];
+  //   onChange?.(classificator);
+  // };
+
   onClick() {
-    // let _selectedItems: any[] = [
-    //   {
-    //     items: [
-    //       {
-    //         series: []
-    //       }
-    //     ]
-    //   }
-    // ]
+
     // const arr = this.checklistSelection.selected.map(s => {
     //   if (s.level == 0) {
-    //     _selectedItems[0].items[0].push(
+    //     this._selectedItems[0].push({
     //       name : s.item
+    //     }
+        
     //     )
         
-    //   } else if (s.level == 1) {
-    //       _selectedItems[0].items.push({
-    //         "series" : s.item
+    //   } 
+    //   if (s.level == 1) {
+    //       this._selectedItems[0][0].push({
+    //         series : s.item
     //       })
     //   }
+    //   if (s.level == 2) {
+    //     this._selectedItems[0][0][0].push({
+    //       model : s.item
+    //     })
+    // }
     // });
-    // console.log(_selectedItems);
+    // console.log(this._selectedItems);
 
     // this._selectedItems = this.checklistSelection.selected.map(s => s.level);
     // console.log(this._selectedItems);

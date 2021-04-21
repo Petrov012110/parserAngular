@@ -20,7 +20,6 @@
 }
 a.btn-nav{
     margin-right: 15px;
-    border: none;
     display: flex;
     text-decoration: none;
     font-size: 14px;
@@ -29,6 +28,8 @@ a.btn-nav{
     align-items: center;
     padding: 8px 16px;
     transition: background-color .3s ease-in-out, box-shadow .3s ease-in-out,padding .3s ease;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
     height: inherit;
     color: var(--color-text-paragraph);
     &:hover{
@@ -38,8 +39,10 @@ a.btn-nav{
     
 }
 .active{
-    background-color: var(--btn-background-color);
+    background-color: var(--btn-background-color) !important;
     box-shadow: inset 0 -4px 0 0 var(--color-accent);
+    border-left: 1px solid #C0E3FF !important;
+    border-right: 1px solid #C0E3FF !important;
     transition: background-color .3s ease-in-out, box-shadow .3s ease-in-out,padding .3s ease;
     cursor: default;
     &:hover{

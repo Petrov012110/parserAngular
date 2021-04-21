@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ParsedGroupTypes, TableServices } from '../../services/table.services';
 
 
@@ -9,6 +9,7 @@ import { ParsedGroupTypes, TableServices } from '../../services/table.services';
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TableComponent implements OnInit {
 
@@ -42,12 +43,14 @@ export class TableComponent implements OnInit {
 
       data.forEach((res) => {
         if (res.data.length) {
-          res.data.forEach((res2) => {
+          res.data.forEach((res2: any) => {
+            res2['name'] = res.name;
             this.tableDataNew.push(res2);
           })
         }
       });
-
+      console.log('DAT', this.tableDataNew);
+      
       this.tableData = this.paginate(this.tableDataNew, 10, this.page);
     });
   }

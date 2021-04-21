@@ -1,3 +1,4 @@
+
 <div *ngIf="tableData.length; else loading">
   <table >
     <thead>
@@ -12,7 +13,8 @@
     <tbody>
       <tr *ngFor="let d of tableData; let i = index">
         
-          <!-- <td>{{idx+1}}</td> -->
+          <td>{{i+1}}</td>
+          <td>{{d.name}}</td>
           <td>{{d.price}}</td>
           <td>
             <button class="btn btn-link" [routerLink]="['/user', 'post', d.price]">
@@ -20,6 +22,8 @@
             </button>
             <!-- <a (click)="addFavorites(post)">Избранное</a> -->
           </td>
+          <td>{{d.price}}</td>
+
         </tr>
     </tbody>
   </table>
@@ -27,5 +31,8 @@
 </div>
 
 <ng-template #loading>
-  <mat-spinner></mat-spinner>
+  <div class="spinner-container">
+    <mat-spinner></mat-spinner>
+
+  </div>
 </ng-template>

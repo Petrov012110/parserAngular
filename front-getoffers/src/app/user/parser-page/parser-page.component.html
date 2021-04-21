@@ -1,28 +1,25 @@
-<div class="wrapp-tree">
-  <app-tree></app-tree>
+<div class="parser-wrapp">
+  <div class="wrapp-tree">
+    <app-tree></app-tree>
+  </div>
+  <div class="container">
+    <div class="container-content">
+      <div class="wrapp-groups">
+        <app-groups></app-groups>
+      </div>
+      <div class="wrapp-btn">
+        <button mat-flat-button color="warn" (click)="onSubmit()" class="btn-send">
+          Отправить
+        </button>
+      </div>
+      <div class="wrapp-tabs">
+        <nav mat-tab-nav-bar>
+          <a mat-tab-link *ngFor="let link of navLinks" [routerLink]="link.link" routerLinkActive
+            #rla="routerLinkActive" [active]="rla.isActive"> {{link.label}} </a>
+          <a mat-tab-link disabled>Disabled Link</a>
+        </nav>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="container">
-  <div class="wrapp-groups">
-    <app-groups></app-groups>
-  </div>
-  <div class="wrapp-btn">
-    <button mat-flat-button 
-      color="warn"
-      (click)="onSubmit()"
-    >
-    Отправить
-    </button>
-  </div>
-  <div class="wrapp-tabs">
-    <nav mat-tab-nav-bar >
-      <a mat-tab-link *ngFor="let link of navLinks"
-      [routerLink]="link.link"
-      routerLinkActive #rla="routerLinkActive"
-      [active]="rla.isActive"> {{link.label}} </a>
-      <a mat-tab-link disabled>Disabled Link</a>
-    </nav>
-    <router-outlet></router-outlet>
-  </div>
-</div>
-
-

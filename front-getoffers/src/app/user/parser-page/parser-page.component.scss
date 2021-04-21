@@ -1,19 +1,36 @@
+
 .wrapp-tree{
     position: absolute;
 }
 .wrapp-groups{
     columns: 2;
 }
-a{
-    .mat-tab-label-active {
-    }
-    
-}
+
 .mat-tab-label, 
 .mat-tab-link{
     color: var(--color-text-paragraph) !important;
-    
+    text-decoration: none !important;
+    opacity: 1 !important;
 }
+.mat-tab-nav-bar, 
+.mat-tab-header {
+     border-bottom: none; 
+}
+
 .mat-ink-bar{
     background-color: var(--color-accent) !important;
+}
+.container-content{
+    background-color: var(--bg-page-content);
+    border: 1xp solid var(--border-color-page-content);
+    box-shadow: var(--page-content-shadow);
+    margin-top: 56px;
+    min-height: 700px;
+}
+.btn-send{
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 16px;
+    height: 48px;
+    line-height: calc(48px - 2px * 2);
+    padding: 0 24px;
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatListOption } from '@angular/material/list'
 import { GroupsServices } from '../../services/groups.services';
 
@@ -6,6 +6,7 @@ import { GroupsServices } from '../../services/groups.services';
   selector: 'app-groups',
   templateUrl: './groups.component.html',
   styleUrls: ['./groups.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class GroupsComponent implements OnInit {
 

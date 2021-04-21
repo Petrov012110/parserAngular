@@ -13,6 +13,11 @@
   --color-text-paragraph: #434854;
   --color-text-secondary: #868A95;
   --color-accent: #FC5454;
+  --color-line: #e7ebf4;
+  --bg-body-progect: #f6f8f9;
+  --border-color-page-content: var(--color-line);
+  --page-content-shadow: 0px 2px 4px rgba(34, 40, 53, 0.04);
+  --bg-page-content: #fff;
 }
 
 * {
@@ -22,18 +27,17 @@
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif !important;
   font-size: 1rem;
   line-height: 1.6;
-  background-color: #fff;
+  background-color: var(--bg-body-progect);
   color: #333;
 }
 .mat-toolbar,
 .mat-tab-label,
 .mat-tab-link{
   font-family: 'Montserrat', sans-serif !important;
-
-
+  color: #434854;
 }
 
 ul {
@@ -74,20 +78,7 @@ button {
   font: inherit;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
 
-table th,
-table td {
-  padding: 1rem;
-  text-align: left;
-}
-
-table th {
-  background: var(--light-color);
-}
 
 .navbar {
   display: flex;
@@ -118,7 +109,7 @@ table th {
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family:  "Montserrat", sans-serif; }
+body { margin: 0; font-family:  "Montserrat", sans-serif; background-color: var(--bg-body-progect) !important}
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
