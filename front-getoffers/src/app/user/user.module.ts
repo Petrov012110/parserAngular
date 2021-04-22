@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from "@angular/common/http";
 import { MatListModule } from '@angular/material/list';
+import { NzTreeModule } from 'ng-zorro-antd/tree';
 
 import { LoginPageComponent } from "./login-page/login-page.component";
 import { UserLayoutComponent } from "./shared/components/user-layout/user-layout.component";
@@ -55,6 +56,7 @@ import { CheckServices } from "./shared/services/check.services";
         MatButtonModule,
         MatFormFieldModule,
         MatListModule,
+        NzTreeModule,
         NgbModule,
         
         RouterModule.forChild([

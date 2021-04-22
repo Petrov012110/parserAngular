@@ -38,8 +38,9 @@ export type ClassificatorType = BrandType[];
 export class TreeServices implements OnDestroy {
 
     treeSub: Subscription = new Subscription;
+    treeData: any;
     constructor(private http: HttpClient) {
-        this.initialize();
+        
     }
 
     dataChange = new BehaviorSubject<TodoItemNode[]>([]);
@@ -50,60 +51,38 @@ export class TreeServices implements OnDestroy {
         return this.http.get(`http://212.119.243.127:5387/api/classificator`)
     }
 
-    initialize() {
-        let data;
+
+    getAnswerTree() {
         this.treeSub = this.getTree().subscribe( vl => {
-          const classificator = vl as ClassificatorType;
-          const resData: { [key: string]: any } = {};
-          classificator.forEach((val) => {
-            if (val.series) {
-              resData[val.name] = {}
-              val.series.forEach((seriesItem) => {
-                if (seriesItem.models) {
-                  resData[val.name][seriesItem.name] = {};
-                  seriesItem.models.forEach((modelsItem) => {
-                    resData[val.name][seriesItem.name][modelsItem.name] = null
-                  });
-                } else resData[val.name][seriesItem.name] = null
-              })
-            } else resData[val.name] = null
-          });
-          data = this.buildFileTree(resData, 0);
-          this.dataChange.next(data);
+            const classificator: ClassificatorType = vl;
+            const resData = classificator.map((brand) => ({
+              title: brand.name,
+              key: brand.name,
+              children: brand.series?.map((seriesItem) => ({
+                title: seriesItem.name,
+                key: `${brand.name}/${seriesItem.name}`,
+                children: seriesItem.models?.map((model) => ({
+                  title: model.name,
+                  key: `${brand.name}/${seriesItem.name}/${model.name}`,
+                }))
+              }))
+            }));
+            this.treeData = resData;
+            console.log('TREE1', this.treeData);
+            
+            // setClassificator(resData);
+
         })
+
     }
+
+
+   
     /**
      * Build the file structure tree. The `value` is the Json object, or a sub-tree of a Json object.
      * The return value is the list of `TodoItemNode`.
      */
-    buildFileTree(obj: { [key: string]: any }, level: number): TodoItemNode[] {
-        return Object.keys(obj).reduce<TodoItemNode[]>((accumulator, key) => {
-            const value = obj[key];
-            const node = new TodoItemNode();
-            node.item = key;
-            if (value != null) {
-                if (typeof value === 'object') {
-                    node.children = this.buildFileTree(value, level + 1);
-                } else {
-                    node.item = value;
-                }
-            }
-            return accumulator.concat(node);
-        }, []);
-    }
-
-    /** Add an item to to-do list */
-    insertItem(parent: TodoItemNode, name: string) {
-        if (parent.children) {
-            parent.children.push({ item: name } as TodoItemNode);
-            this.dataChange.next(this.data);
-        }
-    }
-
-    updateItem(node: TodoItemNode, name: string) {
-        node.item = name;
-        this.dataChange.next(this.data);
-    }
+    
 
     ngOnDestroy() {
         if(this.treeSub) {
