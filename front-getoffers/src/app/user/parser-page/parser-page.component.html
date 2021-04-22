@@ -1,6 +1,8 @@
 <div class="parser-wrapp">
   <div class="wrapp-tree">
-    <app-tree></app-tree>
+    <div class="wrapp-tree__inner">
+      <app-tree></app-tree>
+    </div>
   </div>
   <div class="container">
     <div class="container-content">
@@ -16,7 +18,6 @@
         <nav mat-tab-nav-bar>
           <a mat-tab-link *ngFor="let link of navLinks" [routerLink]="link.link" routerLinkActive
             #rla="routerLinkActive" [active]="rla.isActive"> {{link.label}} </a>
-          <a mat-tab-link disabled>Disabled Link</a>
         </nav>
         <router-outlet></router-outlet>
       </div>

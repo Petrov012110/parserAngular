@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { SubscriptionLike } from 'rxjs/internal/types';
+import { CheckServices } from '../shared/services/check.services';
 import { GroupsServices } from '../shared/services/groups.services';
 
 @Component({
@@ -20,7 +21,7 @@ export class ParserPageComponent implements OnInit, OnDestroy {
 
   private subscriptions: SubscriptionLike[] = [];
   constructor(
-    private groupService: GroupsServices,
+    private checkService: CheckServices,
     private router: Router,
 
   ) {
@@ -37,10 +38,6 @@ export class ParserPageComponent implements OnInit, OnDestroy {
     ];
   }
 
-  getCheckedTree() {
-    // console.log(this._selectedItems);
-  }
-
   ngOnInit(): void {
     this.subscriptions.push(
       this.router.events.subscribe((res) => {
@@ -49,7 +46,7 @@ export class ParserPageComponent implements OnInit, OnDestroy {
     );
 
     this.subscriptions.push(
-      this.groupService.onSelectGroups().subscribe((groups: any) => {
+      this.checkService.onSelectGroups().subscribe((groups: any) => {
         this.groups = groups.groups;
         console.log('GROUPS HERE', groups);
       })

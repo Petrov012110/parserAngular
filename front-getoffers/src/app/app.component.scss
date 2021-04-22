@@ -3,6 +3,7 @@
 }
 .mat-toolbar{
     background-color: #fff;
+    box-shadow: var(--page-content-shadow);
     .container{
         height: inherit;
     }

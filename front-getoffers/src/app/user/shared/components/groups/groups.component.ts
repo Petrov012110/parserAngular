@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatListOption } from '@angular/material/list'
 import { Subscription } from 'rxjs';
+import { CheckServices } from '../../services/check.services';
 import { GroupsServices } from '../../services/groups.services';
 
 @Component({
@@ -15,7 +16,10 @@ export class GroupsComponent implements OnInit, OnDestroy {
   groupsSub: Subscription = new Subscription;
   selectedGroups: string[] = [];
 
-  constructor(private groupService: GroupsServices) { }
+  constructor(
+    private groupService: GroupsServices,
+    private checkService: CheckServices
+    ) { }
 
   ngOnInit(): void {
     this.groupsSub = this.groupService.getGroups().subscribe(data => {
@@ -30,7 +34,7 @@ export class GroupsComponent implements OnInit, OnDestroy {
   onGroupsChange(options: MatListOption[]) {
     this.selectedGroups = options.map(o => o.value);
 
-    this.groupService.treeSelected.next({ ...this.groupService.treeSelected.value, groups: this.selectedGroups});
+    this.checkService.checkSelected.next({ ...this.checkService.checkSelected.value, groups: this.selectedGroups});
     console.log('HELLO SELECT', options.map(o => o.value));
   }
 

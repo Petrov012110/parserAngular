@@ -1,16 +1,56 @@
-
+app-tree{
+    width: inherit;
+}
 .wrapp-tree{
     position: absolute;
+    max-width: 17%;
+    &__inner{
+        display: flex;
+        top: 0;
+        width: 100%;
+        max-width: inherit;
+        min-height: 100%;
+        border-right: 1px solid var(--color-line);
+        background-color: #FFFFFF;
+        position: fixed;
+        z-index: 1;
+        transition: max-width 0.3s ease;
+        padding: 20px 10px 5px 10px;
+        overflow-y: auto;
+        height: calc(100vh - 64px);
+    }
 }
 .wrapp-groups{
     columns: 2;
 }
-
+.wrapp-tabs{
+    margin-top: 20px;
+}
+mat-tab-link{
+    width: 100px !important;
+}
+.mat-tab-label-active{
+    background-color: #fbfcfc !important;
+    border-top: 1px solid var(--border-color-page-content);
+    border-left: 1px solid var(--border-color-page-content);
+    border-right: 1px solid var(--border-color-page-content);
+    border-bottom: 1px solid var(--color--table-header);
+    &:hover{
+        border-top: 1px solid var(--border-color-page-content);
+        border-left: 1px solid var(--border-color-page-content);
+        border-right: 1px solid var(--border-color-page-content);
+    }
+}
 .mat-tab-label, 
 .mat-tab-link{
     color: var(--color-text-paragraph) !important;
     text-decoration: none !important;
     opacity: 1 !important;
+    min-width: 100px !important;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, padding 0.3s ease;
+    &:hover{
+        background-color: var(--btn-hover-color);
+    }
 }
 .mat-tab-nav-bar, 
 .mat-tab-header {
@@ -19,6 +59,8 @@
 
 .mat-ink-bar{
     background-color: var(--color-accent) !important;
+    top: 0;
+    
 }
 .container-content{
     background-color: var(--bg-page-content);

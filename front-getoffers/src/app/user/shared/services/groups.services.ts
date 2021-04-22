@@ -10,17 +10,13 @@ export type GroupsType = {
     // hrefImage: string
 }
 
-export interface TreeSelectedInterface {
+export interface SelectedInterface {
     groups: any,
     trees: any
 };
 
 @Injectable()
 export class GroupsServices {
-    public treeSelected: BehaviorSubject<TreeSelectedInterface> = new BehaviorSubject({
-        groups: [],
-        trees: [],
-    });
 
     constructor(private http: HttpClient) { }
 
@@ -35,21 +31,8 @@ export class GroupsServices {
                             name: response[key].name,
                         }))
                 }),
-                // catchError(this.handleError.bind(this))
             )
     }
 
-    private handleError(error: HttpErrorResponse) {
-       
-        
-    }
 
-
-    onSelectGroups(): Observable<TreeSelectedInterface> {
-        return this.treeSelected.pipe(tap((res) => res.groups));
-    }
-
-    onSelectTrees(): Observable<TreeSelectedInterface> {
-        return this.treeSelected.pipe(tap((res) => res.trees));
-    }
 }

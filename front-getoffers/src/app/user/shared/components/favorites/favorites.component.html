@@ -1,1 +1,38 @@
-<p>favorites works!</p>
+<div >
+    <table >
+      <thead>
+        <tr>
+          <th>Номер</th>
+          <th>Группа</th>
+          <th>Цена</th>
+          <th>Ссылка</th>
+          <th>Избранное</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr >
+          
+            <td>{{'Номер'}}</td>
+            <td>{{'Группа'}}</td>
+            <td>{{'Цена'}}</td>
+            <td>
+              <button class="btn btn-link">
+                Удалить
+              </button>
+              <!-- <a (click)="addFavorites(post)">Избранное</a> -->
+            </td>
+            <td></td>
+  
+          </tr>
+      </tbody>
+    </table>
+    <!-- <ngb-pagination [collectionSize]="tableDataNew.length" [(page)]="page" [maxSize]="10" [rotate]="true" [boundaryLinks]="true" (pageChange)="onChangePagination($event)"></ngb-pagination> -->
+  </div>
+  
+  <ng-template #loading>
+    <div class="spinner-container">
+      <mat-spinner></mat-spinner>
+  
+    </div>
+  </ng-template>
+  

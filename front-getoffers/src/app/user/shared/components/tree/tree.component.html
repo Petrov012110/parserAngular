@@ -3,10 +3,10 @@
       <button mat-icon-button disabled></button>
       <mat-checkbox class="checklist-leaf-node"
                     [checked]="checklistSelection.isSelected(node)"
-                    (change)="checkCheckBoxvalue($event)"
+                    
                     
                     (change)="todoLeafItemSelectionToggle(node)"
-                    (change)="onClick()">{{node.item}}</mat-checkbox>
+                    >{{node.item}}</mat-checkbox>
     </mat-tree-node>
   
     <mat-tree-node *matTreeNodeDef="let node; when: hasNoContent" matTreeNodePadding  [@simpleFade]="node.level?1:0">
@@ -26,10 +26,10 @@
         </mat-icon>
       </button>
       <mat-checkbox [checked]="descendantsAllSelected(node)"
-                    (change)="checkCheckBoxvalue($event)"
+                    
                     
                     (change)="todoItemSelectionToggle(node)"
-                    (change)="onClick()">{{node.item}}</mat-checkbox>
+                    >{{node.item}}</mat-checkbox>
       <!-- <button mat-icon-button (click)="addNewItem(node)"><mat-icon>add</mat-icon></button> -->
     </mat-tree-node>
   </mat-tree>

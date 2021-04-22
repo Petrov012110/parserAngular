@@ -28,6 +28,7 @@ import { GroupsServices } from "./shared/services/groups.services";
 import { TreeServices } from "./shared/services/tree.services";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { BreadcrumbComponent } from "./shared/components/breadcrumb/breadcrumb.component";
+import { CheckServices } from "./shared/services/check.services";
 
 
 @NgModule({
@@ -100,7 +101,8 @@ import { BreadcrumbComponent } from "./shared/components/breadcrumb/breadcrumb.c
     providers: [
         TableServices,
         GroupsServices,
-        TreeServices
+        TreeServices,
+        CheckServices
     ],
     exports: [RouterModule]
 })

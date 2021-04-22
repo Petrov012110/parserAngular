@@ -170,7 +170,7 @@ export class TreeComponent implements OnInit {
   // }
 
   ngOnInit() {
-    console.log(this.checklistSelection.isSelected);
+    console.log(this.checklistSelection.selected);
 
   }
 
@@ -190,6 +190,7 @@ export class TreeComponent implements OnInit {
   // };
 
   onClick() {
+    console.log(this.checklistSelection.selected);
 
     // const arr = this.checklistSelection.selected.map(s => {
     //   if (s.level == 0) {
