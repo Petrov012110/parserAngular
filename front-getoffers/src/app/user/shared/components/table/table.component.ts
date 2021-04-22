@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { ParsedGroupTypes, TableServices } from '../../services/table.services';
 
 
@@ -11,15 +12,16 @@ import { ParsedGroupTypes, TableServices } from '../../services/table.services';
   styleUrls: ['./table.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, OnDestroy {
 
   tableData: any[] = [];
+  tableSub: Subscription = new Subscription; 
   tableDataNew: any[] = [];
   page = 1;
   pageSize = 10;
 
   constructor(private tableService: TableServices) {
-
+   
   }
 
   onChangePagination(event: number) {
@@ -38,7 +40,7 @@ export class TableComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tableService.getAll().subscribe(data => {
+    this.tableSub = this.tableService.getAll().subscribe(data => {
       if (!data) return;
 
       data.forEach((res) => {
@@ -53,6 +55,12 @@ export class TableComponent implements OnInit {
       
       this.tableData = this.paginate(this.tableDataNew, 10, this.page);
     });
+  }
+
+  ngOnDestroy() {
+    if(this.tableSub) {
+      this.tableSub.unsubscribe()
+    }
   }
 }
 

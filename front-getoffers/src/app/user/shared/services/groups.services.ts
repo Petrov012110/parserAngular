@@ -1,8 +1,8 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, throwError } from "rxjs";
 import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
-import { map, tap } from "rxjs/operators";
+import { catchError, map, tap } from "rxjs/operators";
 
 export type GroupsType = {
     name: string
@@ -23,20 +23,27 @@ export class GroupsServices {
     });
 
     constructor(private http: HttpClient) { }
-    
+
     getGroups(): Observable<GroupsType[]> {
         return this.http.get(`http://212.119.243.127:5387/api/groups`)
-            .pipe(map((response: {[key:string]: any}) => {
-                return Object
-                    .keys(response)
-                    .map(key => ({
-                        ...response[key],
-                        name: response[key].name,
-                    }))
-                })
+            .pipe(
+                map((response: { [key: string]: any }) => {
+                    return Object
+                        .keys(response)
+                        .map(key => ({
+                            ...response[key],
+                            name: response[key].name,
+                        }))
+                }),
+                // catchError(this.handleError.bind(this))
             )
     }
-    
+
+    private handleError(error: HttpErrorResponse) {
+       
+        
+    }
+
 
     onSelectGroups(): Observable<TreeSelectedInterface> {
         return this.treeSelected.pipe(tap((res) => res.groups));

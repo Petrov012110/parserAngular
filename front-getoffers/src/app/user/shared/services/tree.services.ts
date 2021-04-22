@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Injectable, OnDestroy } from "@angular/core";
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 
 /**
  * Node for to-do item
@@ -35,8 +35,9 @@ export type BrandType = {
 export type ClassificatorType = BrandType[];
 
 @Injectable({ providedIn: 'root' })
-export class TreeServices {
+export class TreeServices implements OnDestroy {
 
+    treeSub: Subscription = new Subscription;
     constructor(private http: HttpClient) {
         this.initialize();
     }
@@ -51,7 +52,7 @@ export class TreeServices {
 
     initialize() {
         let data;
-        this.getTree().subscribe( vl => {
+        this.treeSub = this.getTree().subscribe( vl => {
           const classificator = vl as ClassificatorType;
           const resData: { [key: string]: any } = {};
           classificator.forEach((val) => {
@@ -102,5 +103,11 @@ export class TreeServices {
     updateItem(node: TodoItemNode, name: string) {
         node.item = name;
         this.dataChange.next(this.data);
+    }
+
+    ngOnDestroy() {
+        if(this.treeSub) {
+            this.treeSub.unsubscribe()
+          }
     }
 }

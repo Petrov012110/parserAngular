@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatListOption } from '@angular/material/list'
+import { Subscription } from 'rxjs';
 import { GroupsServices } from '../../services/groups.services';
 
 @Component({
@@ -8,15 +9,16 @@ import { GroupsServices } from '../../services/groups.services';
   styleUrls: ['./groups.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class GroupsComponent implements OnInit {
+export class GroupsComponent implements OnInit, OnDestroy {
 
   groups: string[] = [];
+  groupsSub: Subscription = new Subscription;
   selectedGroups: string[] = [];
 
   constructor(private groupService: GroupsServices) { }
 
   ngOnInit(): void {
-    this.groupService.getGroups().subscribe(data => {
+    this.groupsSub = this.groupService.getGroups().subscribe(data => {
       data.forEach(el => {
         if (el.name) {
           this.groups.push(el.name)
@@ -30,6 +32,12 @@ export class GroupsComponent implements OnInit {
 
     this.groupService.treeSelected.next({ ...this.groupService.treeSelected.value, groups: this.selectedGroups});
     console.log('HELLO SELECT', options.map(o => o.value));
+  }
+
+  ngOnDestroy() {
+    if(this.groupsSub) {
+      this.groupsSub.unsubscribe()
+    }
   }
 
 }

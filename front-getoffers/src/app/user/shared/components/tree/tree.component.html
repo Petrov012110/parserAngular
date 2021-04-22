@@ -1,5 +1,5 @@
 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding  [@simpleFade]="node.level?1:0">
       <button mat-icon-button disabled></button>
       <mat-checkbox class="checklist-leaf-node"
                     [checked]="checklistSelection.isSelected(node)"
@@ -9,7 +9,7 @@
                     (change)="onClick()">{{node.item}}</mat-checkbox>
     </mat-tree-node>
   
-    <mat-tree-node *matTreeNodeDef="let node; when: hasNoContent" matTreeNodePadding>
+    <mat-tree-node *matTreeNodeDef="let node; when: hasNoContent" matTreeNodePadding  [@simpleFade]="node.level?1:0">
       <button mat-icon-button disabled></button>
       <mat-form-field>
         <mat-label>New item...</mat-label>
@@ -18,7 +18,7 @@
       <!-- <button mat-button (click)="saveNode(node, itemValue.value)">Save</button> -->
     </mat-tree-node>
   
-    <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+    <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding  [@simpleFade]="node.level?1:0">
       <button mat-icon-button matTreeNodeToggle
               [attr.aria-label]="'Toggle ' + node.item">
         <mat-icon class="mat-icon-rtl-mirror">

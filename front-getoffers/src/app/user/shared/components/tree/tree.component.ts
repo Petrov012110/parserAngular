@@ -4,7 +4,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { TodoItemFlatNode, TodoItemNode, TreeServices } from '../../services/tree.services';
-import { group } from '@angular/animations';
+import { animate, group, state, style, transition, trigger } from '@angular/animations';
 
 
 
@@ -13,6 +13,13 @@ import { group } from '@angular/animations';
   selector: 'app-tree',
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
+  animations: [
+
+    trigger('simpleFade', [
+      transition(':enter', [
+        style({ opacity:0 }),
+        animate(350)
+      ])])],
   providers: [TreeServices]
 })
 export class TreeComponent implements OnInit {
@@ -40,13 +47,7 @@ export class TreeComponent implements OnInit {
 
   // _selectedItems: any[];
 
-  _selectedItems: any[] = [
-    [
-      [
-        
-      ]
-    ]
-  ]
+
   constructor(
     private _database: TreeServices
   ) {
@@ -58,7 +59,7 @@ export class TreeComponent implements OnInit {
     _database.dataChange.subscribe(data => {
       this.dataSource.data = data;
     });
-   
+
   }
 
   getLevel = (node: TodoItemFlatNode) => node.level;
@@ -195,9 +196,9 @@ export class TreeComponent implements OnInit {
     //     this._selectedItems[0].push({
     //       name : s.item
     //     }
-        
+
     //     )
-        
+
     //   } 
     //   if (s.level == 1) {
     //       this._selectedItems[0][0].push({
