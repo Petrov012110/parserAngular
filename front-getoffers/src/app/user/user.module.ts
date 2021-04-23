@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { NgModule } from "@angular/core";
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
 import { MatTabsModule } from '@angular/material/tabs';
@@ -13,6 +13,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from "@angular/common/http";
 import { MatListModule } from '@angular/material/list';
 import { NzTreeModule } from 'ng-zorro-antd/tree';
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 
 import { LoginPageComponent } from "./login-page/login-page.component";
 import { UserLayoutComponent } from "./shared/components/user-layout/user-layout.component";
@@ -57,6 +59,9 @@ import { CheckServices } from "./shared/services/check.services";
         MatFormFieldModule,
         MatListModule,
         NzTreeModule,
+        MatCheckboxModule,
+        NzCollapseModule,
+        NzCheckboxModule,
         NgbModule,
         
         RouterModule.forChild([
@@ -106,7 +111,8 @@ import { CheckServices } from "./shared/services/check.services";
         TreeServices,
         CheckServices
     ],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class UserModule {
 

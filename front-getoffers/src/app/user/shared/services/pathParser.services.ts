@@ -11,10 +11,13 @@ type MyType = {
     if (pathItems.length) {
       let pathItem = pathItems.shift();
       let current;
+      console.log("pathItem:", pathItem);
+      console.log("obj:", obj);
+      
       if(pathItem){
-        current = obj[pathItem]  (obj[pathItem] = { text: pathItem })
+        current = obj[pathItem] || (obj[pathItem] = { text: pathItem })
         if (pathItems.length) {
-          addPath(pathItems, current.children  (current.children = {}))
+          addPath(pathItems, current.children || (current.children = {}))
         }
       }
     }

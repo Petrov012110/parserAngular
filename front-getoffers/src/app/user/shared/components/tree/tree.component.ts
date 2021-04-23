@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { NzFormatEmitEvent } from 'ng-zorro-antd/tree';
-import { TreeServices } from '../../services/tree.services';
+import { Component, EventEmitter, OnInit } from '@angular/core';
+import { NzFormatEmitEvent, NzTreeNode, NzTreeNodeOptions } from 'ng-zorro-antd/tree';
+import { CheckServices } from '../../services/check.services';
+import { ClassificatorType, TreeServices } from '../../services/tree.services';
 
 
 @Component({
@@ -15,23 +16,40 @@ export class TreeComponent implements OnInit  {
   defaultExpandedKeys = ['0-0', '0-0-0', '0-0-1'];
 
   nodes:any
-
+  selectedGroups: string[] = [];
   constructor(
-    private treeService: TreeServices
+    private treeService: TreeServices,
+    private checkService: CheckServices
     ) { }
     
     
     ngOnInit(): void {
-      this.nodes = this.treeService.getAnswerTree();
-      console.log('TREE', this.nodes);
-      
-      
+      this.treeService.getTree().subscribe(((data) => {
+        const classificator: ClassificatorType = data;
+        const resData = classificator.map((brand) => ({
+          title: brand.name,
+          key: brand.name,
+          children: brand.series?.map((seriesItem) => ({
+            title: seriesItem.name,
+            key: `${brand.name}/${seriesItem.name}`,
+            children: seriesItem.models?.map((model) => ({
+              title: model.name,
+              key: `${brand.name}/${seriesItem.name}/${model.name}`,
+            }))
+          }))
+        }));
+        this.nodes = resData
+      }
+      ));
     }
+
+
 
 
   
 
   nzEvent(event: NzFormatEmitEvent): void {
-    console.log(event);
+    // console.log(event.keys);
+    this.checkService.checkSelected.next({ ...this.checkService.checkSelected.value, items: event.keys});
   }
 }

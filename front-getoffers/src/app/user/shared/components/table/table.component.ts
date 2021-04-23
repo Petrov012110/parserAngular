@@ -51,7 +51,7 @@ export class TableComponent implements OnInit, OnDestroy {
           })
         }
       });
-      console.log('DAT', this.tableDataNew);
+      // console.log('DAT', this.tableDataNew);
       
       this.tableData = this.paginate(this.tableDataNew, 10, this.page);
     });

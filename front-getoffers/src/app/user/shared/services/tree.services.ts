@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, OnDestroy } from "@angular/core";
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { map } from "rxjs/operators";
 
 /**
  * Node for to-do item
@@ -47,34 +48,39 @@ export class TreeServices implements OnDestroy {
 
     get data(): TodoItemNode[] { return this.dataChange.value; }
 
+    // getTree(): Observable<any> {
+    //     return this.http.get(`http://212.119.243.127:5387/api/classificator`)
+    // }
+
     getTree(): Observable<any> {
         return this.http.get(`http://212.119.243.127:5387/api/classificator`)
+
     }
 
 
-    getAnswerTree() {
-        this.treeSub = this.getTree().subscribe( vl => {
-            const classificator: ClassificatorType = vl;
-            const resData = classificator.map((brand) => ({
-              title: brand.name,
-              key: brand.name,
-              children: brand.series?.map((seriesItem) => ({
-                title: seriesItem.name,
-                key: `${brand.name}/${seriesItem.name}`,
-                children: seriesItem.models?.map((model) => ({
-                  title: model.name,
-                  key: `${brand.name}/${seriesItem.name}/${model.name}`,
-                }))
-              }))
-            }));
-            this.treeData = resData;
-            console.log('TREE1', this.treeData);
+    // getAnswerTree() {
+    //     this.treeSub = this.getTree().subscribe( vl => {
+    //         const classificator: ClassificatorType = vl;
+    //         const resData = classificator.map((brand) => ({
+    //           title: brand.name,
+    //           key: brand.name,
+    //           children: brand.series?.map((seriesItem) => ({
+    //             title: seriesItem.name,
+    //             key: `${brand.name}/${seriesItem.name}`,
+    //             children: seriesItem.models?.map((model) => ({
+    //               title: model.name,
+    //               key: `${brand.name}/${seriesItem.name}/${model.name}`,
+    //             }))
+    //           }))
+    //         }));
+    //         this.treeData = resData;
+    //         console.log('TREE1', this.treeData);
             
-            // setClassificator(resData);
+    //         // setClassificator(resData);
 
-        })
+    //     })
 
-    }
+    // }
 
 
    

@@ -35,7 +35,7 @@ export class GroupsComponent implements OnInit, OnDestroy {
     this.selectedGroups = options.map(o => o.value);
 
     this.checkService.checkSelected.next({ ...this.checkService.checkSelected.value, groups: this.selectedGroups});
-    console.log('HELLO SELECT', options.map(o => o.value));
+    // console.log('HELLO SELECT', options.map(o => o.value));
   }
 
   ngOnDestroy() {

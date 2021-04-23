@@ -4,14 +4,16 @@ import { tap } from "rxjs/operators";
 
 export interface CheckSelectedInterface {
     groups: any,
-    trees: any
+    items: any
 };
 
 @Injectable()
 export class CheckServices {
     public checkSelected: BehaviorSubject<CheckSelectedInterface> = new BehaviorSubject({
         groups: [],
-        trees: [],
+        items: [{
+
+        }],
     });
 
     onSelectGroups(): Observable<CheckSelectedInterface> {
@@ -19,7 +21,7 @@ export class CheckServices {
     }
 
     onSelectTrees(): Observable<CheckSelectedInterface> {
-        return this.checkSelected.pipe(tap((res) => res.trees));
+        return this.checkSelected.pipe(tap((res) => res.items.key));
     }
 
 }
