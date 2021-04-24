@@ -94,9 +94,15 @@ export class ParserPageComponent implements OnInit, OnDestroy {
         })),
       })) || [];
 
+      this.data["groups"] = this.groups
+      this.data["items"] = classificator
       
-
-      this.tableService.getAll()
+      console.log("SUB", this.data);
+      
+      this.tableService.getAll(this.data).subscribe(data => {
+        console.log(data);
+        
+      })
       // console.log(classificator);
 
       

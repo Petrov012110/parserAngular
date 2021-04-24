@@ -40,21 +40,21 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.tableSub = this.tableService.getAll().subscribe(data => {
-      if (!data) return;
+    // this.tableSub = this.tableService.getAll().subscribe(data => {
+    //   if (!data) return;
 
-      data.forEach((res) => {
-        if (res.data.length) {
-          res.data.forEach((res2: any) => {
-            res2['name'] = res.name;
-            this.tableDataNew.push(res2);
-          })
-        }
-      });
-      // console.log('DAT', this.tableDataNew);
+    //   data.forEach((res) => {
+    //     if (res.data.length) {
+    //       res.data.forEach((res2: any) => {
+    //         res2['name'] = res.name;
+    //         this.tableDataNew.push(res2);
+    //       })
+    //     }
+    //   });
+    //   // console.log('DAT', this.tableDataNew);
       
-      this.tableData = this.paginate(this.tableDataNew, 10, this.page);
-    });
+    //   this.tableData = this.paginate(this.tableDataNew, 10, this.page);
+    // });
   }
 
   ngOnDestroy() {
