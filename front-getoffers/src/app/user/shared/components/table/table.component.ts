@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { ParserPageComponent } from 'src/app/user/parser-page/parser-page.component';
 import { ParsedGroupTypes, TableServices } from '../../services/table.services';
 
 
@@ -19,11 +20,12 @@ export class TableComponent implements OnInit, OnDestroy {
   tableDataNew: any[] = [];
   page = 1;
   pageSize = 10;
-
-  constructor(private tableService: TableServices) {
+  $tabelData!: Observable<[]>; 
+  constructor(private tableService: TableServices,
+    private parsPage: ParserPageComponent) {
    
   }
-
+  
   onChangePagination(event: number) {
     this.page = +event;
 
@@ -40,21 +42,13 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // this.tableSub = this.tableService.getAll().subscribe(data => {
-    //   if (!data) return;
-
-    //   data.forEach((res) => {
-    //     if (res.data.length) {
-    //       res.data.forEach((res2: any) => {
-    //         res2['name'] = res.name;
-    //         this.tableDataNew.push(res2);
-    //       })
-    //     }
-    //   });
-    //   // console.log('DAT', this.tableDataNew);
+    this.$tabelData = this.parsPage.onSubmit()
+    this.tableSub = this.parsPage.onSubmit().subscribe((data: any) => {
+      console.log('ПОЛУЧАЕМ ДАННЫЕ В ТАБЛИЦУ',data);
       
-    //   this.tableData = this.paginate(this.tableDataNew, 10, this.page);
-    // });
+      
+      this.tableData = this.paginate(this.tableDataNew, 10, this.page);
+    });
   }
 
   ngOnDestroy() {

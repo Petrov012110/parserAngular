@@ -77,7 +77,7 @@ export class ParserPageComponent implements OnInit, OnDestroy {
     }],
 });
 
-  onSubmit() {
+  onSubmit(): any {
     if (this.groups.length && this.items.length) {
 
       console.log("СТРОКА, КОТОРУЮ ПЕРЕДАЕМ В parsePath",this.items);
@@ -99,10 +99,11 @@ export class ParserPageComponent implements OnInit, OnDestroy {
       
       console.log("SUB", this.data);
       
-      this.tableService.getAll(this.data).subscribe(data => {
+      const data = this.tableService.getAll(this.data).subscribe(data => {
         console.log(data);
         
       })
+      return data
       // console.log(classificator);
 
       
